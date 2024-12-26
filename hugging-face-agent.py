@@ -24,11 +24,9 @@ st.set_page_config(page_title="Search Agent with HuggingFace", page_icon=":mag_r
 st.markdown(
     f"""
     <style>
-    /* Background color for the whole page */
     div.stApp {{
         background-color: {background_color};
     }}
-    /* Custom text styles */
     .custom-title {{
         color: {primary_color};
         font-size: 32px;
@@ -36,14 +34,12 @@ st.markdown(
         text-align: center;
         margin-top: 20px;
     }}
-
     .custom-subtitle {{
         color: {primary_color};
         font-size: 18px;
         text-align: center;
         margin-bottom: 20px;
     }}
-    /* Styling Streamlit buttons */
     div.stButton > button {{
         background-color: {primary_color} !important;
         color: white !important;
@@ -54,8 +50,6 @@ st.markdown(
         font-weight: bold;
         cursor: pointer;
     }}
-
-    /* Styling input fields */
     input {{
         background-color: {secondary_background_color} !important;
         color: {primary_color} !important;
@@ -81,15 +75,14 @@ google_tool = Tool(
     func=google_search.run
 )
 
-# Hugging Face LLM Integration
-# Add Hugging Face API token here (read from environment variable or other secure storage)
-HUGGINGFACE_API_TOKEN = "HUGGINGFACE_API_TOKEN", "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"
+# Hugging Face API token
+HUGGINGFACE_API_TOKEN = "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"
 
 # Hugging Face LLM Integration
 llm = HuggingFaceHub(
     repo_id="HuggingFaceTB/SmolLM2-1.7B-Instruct",
     model_kwargs={"temperature": 0.7, "max_length": 512},
-    huggingfacehub_api_token=HUGGINGFACE_API_TOKEN  # Set the API token
+    huggingfacehub_api_token=HUGGINGFACE_API_TOKEN  # Set the API token directly
 )
 
 # Pull Prompt for the Agent
@@ -119,21 +112,13 @@ if st.button("Submit Query"):
 
         try:
             last_output = None  # Initialize variable to store the last valid output
-            # Execute the query using the agent executor
             for _ in range(agent_executor.max_iterations):
-                # Try to get the response from the agent
                 response = agent_executor({"input": query})  # Pass query as a dictionary
-                # Check if the response is valid and not empty
                 if response and 'output' in response:
-                    last_output = response['output']  # Store the last valid output
+                    last_output = response['output']
                     processing_message.markdown("<h3 style='color: black;'>Processing Query Done.</h3>", unsafe_allow_html=True)
                     st.markdown(f"<h3 style='color: black;'>Response:</h3><p style='color: black;'>{last_output}</p>", unsafe_allow_html=True)
-                    break  # Break the loop as soon as a valid response is found
-                else:
-                    # Continue searching if no valid response is found
-                    continue
-
-            # If no valid response is found after all iterations, show an error message
+                    break
             if not last_output:
                 processing_message.markdown("<h3 style='color: black;'>Processing Query Done.</h3>", unsafe_allow_html=True)
                 st.error("No valid response was generated.")
