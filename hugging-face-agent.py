@@ -3,6 +3,8 @@
 
 import streamlit as st
 import toml
+import warnings
+warnings.filterwarnings("ignore")
 from langchain_community.utilities import GoogleSearchAPIWrapper
 from langchain_core.tools import Tool
 from langchain.llms import HuggingFaceHub
