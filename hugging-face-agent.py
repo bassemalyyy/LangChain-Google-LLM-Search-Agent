@@ -82,7 +82,7 @@ HUGGINGFACE_API_TOKEN = "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"
 
 # Hugging Face LLM Integration
 llm = HuggingFaceHub(
-    repo_id="HuggingFaceTB/SmolLM2-1.7B-Instruct",
+    repo_id="google/gemma-2-2b-it",
     model_kwargs={"temperature": 0.7, "max_length": 512},
     huggingfacehub_api_token=HUGGINGFACE_API_TOKEN  # Set the API token directly
 )
