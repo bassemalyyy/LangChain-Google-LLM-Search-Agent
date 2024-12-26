@@ -82,9 +82,14 @@ google_tool = Tool(
 )
 
 # Hugging Face LLM Integration
+# Add Hugging Face API token here (read from environment variable or other secure storage)
+HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN", "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")
+
+# Hugging Face LLM Integration
 llm = HuggingFaceHub(
     repo_id="HuggingFaceTB/SmolLM2-1.7B-Instruct",
-    model_kwargs={"temperature": 0.7, "max_length": 512}
+    model_kwargs={"temperature": 0.7, "max_length": 512},
+    huggingfacehub_api_token=HUGGINGFACE_API_TOKEN  # Set the API token
 )
 
 # Pull Prompt for the Agent
