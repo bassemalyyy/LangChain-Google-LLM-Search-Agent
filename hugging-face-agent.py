@@ -83,7 +83,7 @@ google_tool = Tool(
 
 # Hugging Face LLM Integration
 # Add Hugging Face API token here (read from environment variable or other secure storage)
-HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN", "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")
+HUGGINGFACE_API_TOKEN = "HUGGINGFACE_API_TOKEN", "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"
 
 # Hugging Face LLM Integration
 llm = HuggingFaceHub(
