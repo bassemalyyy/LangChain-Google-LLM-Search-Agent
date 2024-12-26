@@ -28,7 +28,7 @@ git clone https://github.com/bassemalyyy/LangChain-Google-LLM-Search-Agent.git
 
 2. Install required packages:
 ```bash
-pip install streamlit langchain ollama toml
+pip install -r requirements.txt
 ```
 
 3. Set up your configuration:
