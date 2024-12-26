@@ -12,7 +12,7 @@ from langchain.agents import create_structured_chat_agent
 from langchain.agents import AgentExecutor
 
 # Load configuration from config.toml
-config = toml.load("D:\\Titan Graduation Project\\.venv\\.streamlit\\config.toml")
+config = toml.load("config.toml")
 
 # Extract theme values from the config file
 primary_color = config['theme']['primaryColor']
