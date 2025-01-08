@@ -66,8 +66,8 @@ st.markdown('<div class="custom-subtitle">Enter your query below to search using
 
 # Google Search Tool
 google_search = GoogleSearchAPIWrapper(
-    google_api_key="AIzaSyDoMRCGeC9g-wPJRKq-mDUgH40tUqtLPsI",
-    google_cse_id="b29af7a6a1b1c405e"
+    google_api_key="GOOGLE_API_KEY",
+    google_cse_id="GOOGLE_CSE_ID"
 )
 google_tool = Tool(
     name="google-search",
