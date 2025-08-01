@@ -1,70 +1,237 @@
-# Streamlit Search Agent with Ollama 🔍
+Search Agent with Ollama
+========================
 
-A powerful web application that combines Google Search capabilities with Ollama's LLM to provide AI-enhanced search responses. Built with Streamlit and LangChain, this application offers an intuitive interface for users to search and receive AI-processed answers.
+A modern web application built with Reflex that combines Google Search with local Ollama LLM to provide AI-powered search responses. This app creates an intelligent search agent that can query Google for recent information and generate comprehensive responses using the Llama 3.2 model.
 
-## Features
+Features
+--------
 
-- 🎯 Google Search integration through LangChain
-- 🤖 Ollama LLM integration for intelligent response processing
-- 💻 Clean, modern Streamlit interface with customizable theming
-- ⚡ Real-time query processing and response generation
-- 🛠️ Error handling and retry mechanisms
-- ⚙️ Configurable search parameters and agent behavior
+-   🔍 **Google Search Integration** - Real-time web search using Serper API
+-   🤖 **Local LLM Processing** - Powered by Ollama and Llama 3.2 model
+-   🎨 **Modern UI** - Beautiful gradient design with responsive components
+-   ⚡ **Real-time Updates** - Async processing with loading states
+-   🛡️ **Error Handling** - Comprehensive error management and user feedback
+-   📱 **Responsive Design** - Works seamlessly across all devices
 
-## Prerequisites
+Prerequisites
+-------------
 
-- Python 3.8+
-- Streamlit
-- LangChain
-- Ollama
-- Google Search API credentials
+Before running this application, make sure you have the following installed:
 
-## Installation
+-   Python 3.8 or higher
+-   [Ollama](https://ollama.ai/) installed and running
+-   A Serper API key (get one from [serper.dev](https://serper.dev/))
 
-1. Clone the repository:
-```bash
-git clone https://github.com/bassemalyyy/LangChain-Google-LLM-Search-Agent.git
+Installation
+------------
+
+1.  **Clone the repository**
+
+    ```
+    git clone https://github.com/yourusername/search-agent-ollama.git
+    cd search-agent-ollama
+
+    ```
+
+2.  **Create a virtual environment**
+
+    ```
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+    ```
+
+3.  **Install dependencies**
+
+    ```
+    pip install reflex langchain langchain-community langchain-ollama
+
+    ```
+
+4.  **Install and setup Ollama**
+
+    Download and install Ollama from [ollama.ai](https://ollama.ai/)
+
+    Then pull the Llama 3.2 model:
+
+    ```
+    ollama pull llama3.2
+
+    ```
+
+    Start Ollama service:
+
+    ```
+    ollama serve
+
+    ```
+
+5.  **Configure API Key**
+
+    Replace the Serper API key in the code with your own:
+
+    ```
+    serper_search = GoogleSerperAPIWrapper(
+        serper_api_key="YOUR_SERPER_API_KEY_HERE"
+    )
+
+    ```
+
+Running the Application
+-----------------------
+
+1.  **Initialize Reflex**
+
+    ```
+    reflex init
+
+    ```
+
+2.  **Run the development server**
+
+    ```
+    reflex run
+
+    ```
+
+3.  **Open your browser**
+
+    Navigate to `http://localhost:3000` to access the application.
+
+Project Structure
+-----------------
+
+```
+search-agent-ollama/
+├── main.py                 # Main application file
+├── requirements.txt        # Python dependencies
+├── rxconfig.py            # Reflex configuration
+├── .web/                  # Generated web assets (auto-created)
+└── README.md              # This file
+
 ```
 
-2. Install required packages:
-```bash
-pip install -r requirements.txt
+Configuration
+-------------
+
+### Environment Variables (Recommended)
+
+For better security, consider using environment variables for your API key:
+
+```
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+serper_search = GoogleSerperAPIWrapper(
+    serper_api_key=os.getenv("SERPER_API_KEY")
+)
+
 ```
 
-3. Set up your configuration:
-   - Create a `.streamlit/config.toml` file with your theme preferences
-   - Configure your Google Search API credentials
+Create a `.env` file:
 
-## Configuration
+```
+SERPER_API_KEY=your_serper_api_key_here
 
-Create a `config.toml` file in the `.streamlit` directory with the following structure:
-
-```toml
-[theme]
-primaryColor = "#YOUR_PRIMARY_COLOR"
-backgroundColor = "#YOUR_BACKGROUND_COLOR"
-secondaryBackgroundColor = "#YOUR_SECONDARY_BACKGROUND_COLOR"
 ```
 
-## Usage
+### Ollama Model Configuration
 
-1. Start the Streamlit application:
-```bash
-streamlit run main.py
+You can change the Ollama model by modifying this line in `main.py`:
+
+```
+ollama_llm = OllamaLLM(model="llama3.2")  # Change to any model you have installed
+
 ```
 
-2. Enter your search query in the text input field
-3. Click "Submit Query" to get AI-enhanced search results
+Available models can be listed with:
 
-## Environment Variables
+```
+ollama list
 
-The following environment variables need to be set:
+```
 
-- `GOOGLE_API_KEY`: Your Google Search API key
-- `GOOGLE_CSE_ID`: Your Google Custom Search Engine ID
+Usage
+-----
 
-## Acknowledgments
+1.  Enter your search query in the input field
+2.  Click "Submit Query" or press Enter
+3.  The application will:
+    -   Search Google for relevant information
+    -   Process the results using the local Llama 3.2 model
+    -   Generate a comprehensive AI-powered response
 
-- Built with [Streamlit](https://streamlit.io/)
-- Powered by [LangChain](https://python.langchain.com/)
-- Uses [Ollama](https://ollama.ai/) for LLM capabilities
+Troubleshooting
+---------------
+
+### Common Issues
+
+**Ollama Connection Error**
+
+-   Ensure Ollama is running: `ollama serve`
+-   Check if the model is installed: `ollama list`
+-   Verify the model name matches in the code
+
+**Serper API Error**
+
+-   Check your API key is valid and has remaining credits
+-   Ensure you're connected to the internet
+
+**Reflex Build Issues**
+
+-   Try deleting the `.web` directory and running `reflex init` again
+-   Ensure all dependencies are installed: `pip install -r requirements.txt`
+
+### Debug Mode
+
+Run the application in debug mode for more detailed error messages:
+
+```
+reflex run --debug
+
+```
+
+Dependencies
+------------
+
+-   **reflex** - Web framework for Python
+-   **langchain** - LLM application framework
+-   **langchain-community** - Community integrations for LangChain
+-   **langchain-ollama** - Ollama integration for LangChain
+
+Contributing
+------------
+
+1.  Fork the repository
+2.  Create a feature branch (`git checkout -b feature/amazing-feature`)
+3.  Commit your changes (`git commit -m 'Add some amazing feature'`)
+4.  Push to the branch (`git push origin feature/amazing-feature`)
+5.  Open a Pull Request
+
+License
+-------
+
+This project is licensed under the MIT License - see the [LICENSE](https://claude.ai/chat/LICENSE) file for details.
+
+Acknowledgments
+---------------
+
+-   [Reflex](https://reflex.dev/) for the amazing Python web framework
+-   [Ollama](https://ollama.ai/) for local LLM capabilities
+-   [LangChain](https://langchain.com/) for LLM orchestration
+-   [Serper](https://serper.dev/) for Google Search API
+
+Support
+-------
+
+If you encounter any issues or have questions, please:
+
+1.  Check the troubleshooting section above
+2.  Search existing [GitHub Issues](https://github.com/yourusername/search-agent-ollama/issues)
+3.  Create a new issue with detailed information about your problem
+
+* * * * *
+
+⭐ If you found this project helpful, please give it a star!
