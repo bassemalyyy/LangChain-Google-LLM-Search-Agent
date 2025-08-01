@@ -33,7 +33,7 @@ class State(rx.State):
         try:
             # Google Search Tool
             serper_search = GoogleSerperAPIWrapper(
-                serper_api_key="211769b35c417bd23a4e89764cd847827e0d054b"
+                serper_api_key="serper_api_key"
             )
             serper_tool = Tool(
                 name="serper-search",
