@@ -18,7 +18,7 @@ Prerequisites
 
 Before running this application, make sure you have the following installed:
 
--   Python 3.8 or higher
+-   Python 3.10 or higher
 -   [Ollama](https://ollama.ai/) installed and running
 -   A Serper API key (get one from [serper.dev](https://serper.dev/))
 
@@ -27,25 +27,22 @@ Installation
 
 1.  **Clone the repository**
 
-    ```
-    git clone https://github.com/yourusername/search-agent-ollama.git
-    cd search-agent-ollama
-
+    ```bash
+    git clone https://github.com/bassemalyyy/LangChain-Search-Agent.git
+    cd LangChain-Search-Agent
     ```
 
 2.  **Create a virtual environment**
 
-    ```
+    ```bash
     python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
-
+    .\venv\Scripts\activate # On Windows
     ```
 
 3.  **Install dependencies**
 
-    ```
+    ```bash
     pip install reflex langchain langchain-community langchain-ollama
-
     ```
 
 4.  **Install and setup Ollama**
@@ -54,27 +51,23 @@ Installation
 
     Then pull the Llama 3.2 model:
 
-    ```
+    ```bash
     ollama pull llama3.2
-
     ```
 
     Start Ollama service:
 
-    ```
+    ```bash
     ollama serve
-
     ```
 
 5.  **Configure API Key**
 
     Replace the Serper API key in the code with your own:
 
-    ```
+    ```bash
     serper_search = GoogleSerperAPIWrapper(
-        serper_api_key="YOUR_SERPER_API_KEY_HERE"
-    )
-
+    serper_api_key="serper_api_key")
     ```
 
 Running the Application
@@ -82,16 +75,14 @@ Running the Application
 
 1.  **Initialize Reflex**
 
-    ```
+    ```bash
     reflex init
-
     ```
 
 2.  **Run the development server**
 
-    ```
+    ```bash
     reflex run
-
     ```
 
 3.  **Open your browser**
@@ -110,7 +101,6 @@ langchain_reflex_agent/
 ├── requirements.txt       # Python dependencies
 ├── rxconfig.py            # Reflex configuration
 └── README.md              # This file
-
 ```
 
 Configuration
@@ -120,16 +110,14 @@ Configuration
 
 You can change the Ollama model by modifying this line in `main.py`:
 
-```
+```bash
 ollama_llm = OllamaLLM(model="llama3.2")  # Change to any model you have installed
-
 ```
 
 Available models can be listed with:
 
-```
+```bash
 ollama list
-
 ```
 
 Usage
