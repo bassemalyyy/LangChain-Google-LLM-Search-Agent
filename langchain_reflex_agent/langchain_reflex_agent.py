@@ -5,7 +5,7 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain_core.tools import Tool
 from langchain_ollama import OllamaLLM
 import asyncio
-from typing import Optional
+
 
 
 class State(rx.State):
