@@ -92,15 +92,16 @@ Running the Application
 Project Structure
 -----------------
 
-```
+```bash
 langchain_reflex_agent/
-├── assets/
-├── langchain_reflex_agent # Application Folder
-                          ├── __init__.py
-                          ├── langchain_reflex_agent.py # Main Application
-├── requirements.txt       # Python dependencies
-├── rxconfig.py            # Reflex configuration
-└── README.md              # This file
+├── assets/                     
+├── langchain_reflex_agent/     # Application package
+│   ├── __init__.py
+│   └── langchain_reflex_agent.py # Main Reflex entrypoint
+├── rxconfig.py                 # Reflex build configuration
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project overview & setup instructions
+├── .gitignore                  # Ignored files
 ```
 
 Configuration
